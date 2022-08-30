@@ -198,6 +198,26 @@ Proxy.prototype = {
         this.doReqWithOptions(options, postData, cb);
     },
 
+    filterRequest: function (port, filter, cb) {
+        var postData = filter;
+        var options = {
+            host: this.host, port: this.port, method: 'POST', path: '/proxy/' + port + '/filter/request', headers: {
+                'Content-Type': 'text/plain'
+            }
+        };
+        this.doReqWithOptions(options, postData, cb);
+    },
+
+    filterResponse: function (port, filter, cb) {
+        var postData = filter;
+        var options = {
+            host: this.host, port: this.port, method: 'POST', path: '/proxy/' + port + '/filter/response', headers: {
+                'Content-Type': 'text/plain'
+            }
+        };
+        this.doReqWithOptions(options, postData, cb);
+    },
+
     remapHosts: function (port, hostsToAdd, cb) {
         var postData = JSON.stringify(hostsToAdd);
         var options = {
